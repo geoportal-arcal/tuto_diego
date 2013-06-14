@@ -1,0 +1,239 @@
+---
+title: ARCAL RLA/5/051 DSS
+layout: default
+---
+<div class="container">
+
+  <div id="header_diego2_index2"> 
+    <a id="branding" href="http://www.iaea.org"><img src="images/iaea_logo.png"></a> 
+    <div id="nav">
+      <ul>
+        <li>
+          <a id="home" class='active'>HOME</a>
+        <li/>
+        <li>
+          <a id="data-layers">Data Layers</a>
+        <li/>
+      </ul>
+    </div>
+    <a class='about' href='#'>About</a> 
+  </div>
+  <div id='window-home_master' class='active'>
+    <div id='map-home'></div>
+    <div id='banner'>
+      <span class="small">USING</span><br>
+      <span class="big">ENVIRONMENTAL RADIONUCLIDES</span><br>
+      <span class="small">AS INDICATORS OF</span><br>
+      <span class="big">LAND DEGRADATION</span><br>
+      <span class="small">IN</span><br>
+      <span class="middle">LATIN AMERICA, CARRIBEAN AND ANTARTIC</span><br>
+      <span class="big">ECOSYSTEMS</span><br><br> 
+      <a id='arcal-rla551' href="">ARCAL RLA/5/051</a><br>
+      <span class="more">Click on yellow icons to get information on study sites</span>
+    </div>
+    <div id="panel-home" class='scroll-pane-narrative'>
+      <div class='ajax-description'> 
+      </div>
+    </div>
+  </div> 
+
+  <div id="window-data">
+    <div id="map-data">
+<!--      <div id='bing-attribution'>Bing Maps</div>-->
+      <div id='status-bar'>Zoom Level: <span id='zoom-level'></span> | Geographic Coordinates (Lat/long): <span id='coordinates'></span></div>
+    </div>
+
+    <a class='push-tab icon active' href='#'>Close</a> 
+    <a class='pull-tab icon' href='#'>Open</a>
+    <div id='panel-data' class='active'>
+      <div class="filter">
+        <ul>
+          <li class="filter-geo category">
+            <ul>
+              <li class="cat-name" title="Filter available layers by clicking the desired values above">GEOGRAPHY</li>
+              <li>
+                <a id="regional" href="#">Regional</a>
+              </li>
+              <li>
+                <a id="argentina" href="#">Argentina</a>
+              </li>
+              <li>
+                <a id="bolivia" class="" href="#">Bolivia</a>
+              </li>
+              <li>
+                <a id="brazil" class="" href="#">Brazil</a>
+              </li>
+              <li>
+                <a id="chile" class="" href="#">Chile</a>
+              </li>
+              <li>
+                <a id="cuba" class="" href="#">Cuba</a>
+              </li>
+              <li>
+                <a id="dominican-republic" class="" href="#">Dominican Rep.</a>
+              </li>
+              <li>
+                <a id="el-salvador" class="" href="#">El Salvador</a>
+              </li>
+               <li>
+                <a id="haiti" class="" href="#">Haiti</a>
+              </li>
+               <li>
+                <a id="jamaica" class="" href="#">Jamaica</a>
+              </li>
+               <li>
+                <a id="mexico" class="" href="#">Mexico</a>
+              </li>
+               <li>
+                <a id="nicaragua" class="" href="#">Nicaragua</a>
+              </li>
+               <li>
+                <a id="peru" class="" href="#">Peru</a>
+              </li>
+               <li>
+                <a id="uruguay" class="" href="#">Uruguay</a>
+              </li>
+               <li>
+                <a id="venezuela" class="" href="#">Venezuela</a>
+              </li>
+ 
+            </ul>
+          </li> 
+          <li class="filter-cat category">
+            <ul>
+              <li class="cat-name" title="Filter available layers by clicking the desired values above">CATEGORY</li>
+              <li>
+                <a id="radionuclides" href="#">Radionuclides</a>
+              </li>
+              <li>
+                <a id="toponymy" href="#">Toponymy</a>
+              </li>
+              <li>
+                <a id="dem" href="#">Relief</a>
+              </li>
+           </ul>
+          </li> 
+        </ul>
+      </div>
+    <div class='layer-group-title'><span title='Click below to turn on/off, click+drag to rearrange.'>OVERLAYS</span></div> 
+    <div class='datalist'>
+      <div id='onlayers' class='scroll-pane-on'>
+        <ul id='sortable'>
+        </ul>
+      </div>
+      <div id='offlayers' class='scroll-pane-off'>
+        <ul id='layerlist'>
+
+          {% for dataset in site.categories.overlay %}
+
+          <li class='{{dataset.geography}} {{dataset.cat}} {{dataset.year}}'>
+            <div class='layer-container'>
+            
+            {% if dataset.layerType == 'googleFusion' %}
+
+              <a class='layer-link' data-title='{{dataset.title}}' data-layerURL='{{dataset.url | replace:'/',''}}' data-layerType='{{dataset.layerType}}' data-circleScale='{{dataset.circleScale}}' data-unit='{{dataset.unit}}' data-lonColIdx='{{dataset.lonColIdx}}' data-latColIdx='{{dataset.latColIdx}}' data-dataColIdx='{{dataset.dataColIdx}}' data-countryColIdx='{{dataset.countryColIdx}}' data-siteColIdx='{{dataset.siteColIdx}}' data-circleColor='{{dataset.circleColor}}' data-circleOpacity='{{dataset.circleOpacity}}' data-circleFillColor='{{dataset.circleFillColor}}' data-circleFillOpacity='{{dataset.circleFillOpacity}}' data-layerID='{{dataset.layerID}}' data-zoomLevel='{{dataset.zoomLevel}}' data-lonCenter='{{dataset.lonCenter}}' data-latCenter='{{dataset.latCenter}}' href='#'>{{dataset.title}}</a>
+
+            {% else %}
+
+              <a class='layer-link' data-geography='{{dataset.geography}}' data-title='{{dataset.title}}' data-layerURL='{{dataset.url | replace:'/',''}}' data-layerType='{{dataset.layerType}}' data-layerID='{{dataset.layerID}}' data-dataPopup='{{dataset.dataPopup}}' data-unit='{{dataset.unit}}' data-zoomLevel='{{dataset.zoomLevel}}' data-lonCenter='{{dataset.lonCenter}}' data-latCenter='{{dataset.latCenter}}' href='#'>{{dataset.title}}</a>
+
+            {% endif %}
+
+              <a class='zoom-to' href='#'></a>
+              <a class='details' id='{{dataset.url  | replace:'/',''}}' href='#'>details</a>
+            </div>
+          </li>
+
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div id='baselayers'>
+      <div class='layer-group-title'><span title='Select base layer.'>BASE LAYER</span></div> 
+      <ul id='baselayerlist' class='scroll-pane-baselayer'>
+          {% for dataset in site.categories.baselayer %}
+
+          <li>
+            <div class='baselayer-container'>
+              <a class='baselayer-link {{dataset.defaultStatus}}' data-layerURL='{{dataset.url  | replace:'/',''}}' data-layerType='{{dataset.layerType}}' data-layerID='{{dataset.layerID}}' href='#'>{{dataset.title}}</a>
+            </div>
+          </li>
+
+          {% endfor %}
+     </ul>
+    </div>
+  </div>
+</div>
+
+<div class='about-modal' style='display:none;'>
+  <div class='about-content'>
+    <h1>ARCAL RLA/5/051 Decision Support System</h1>
+    <h2>About the Site</h2>
+    <p><b>ARCAL RLA/5/051</b> regional technical cooperation project <b>brings together researchers</b> from <b>Latin America and Caribbean</b> in the field of <b>land degradation assessment through the measurement of environmental radionuclide inventories.</b></p>
+    <p>In that context, a system offering project’s participants the opportunity: <b>to disseminate their work and datasets; to compile relevant external datasets and to clearly visualize them, plays a critical role in improving decision making</b> as regards national and regional policies for soil conservation and environmental protection in the region. Furthermore, the geographical dimension and cross-cutting nature of issues involved in ecosystem management requires deploying a system <b>focused on strong geospatial visualization capabilities.</b></p>
+    <p><b>This site is such a platform</b> whose main objective is to serve as <b>Geographic Decision Support System in the field of soil erosion monitoring and conservation.</b>
+    </p>
+    <h2>How to use the Site</h2>
+    <h2>Technologies used and credits</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p> 
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p> 
+    <p class='about-video'><!--<iframe src="http://player.vimeo.com/video/40612546" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>--></p>
+    <a href='#' class='icon about-close'>Close</a>
+  </div>
+</div>
+
+<div class='details-modal' style='display:none;'>
+  <div class='details-content'>
+    {% for dataset in site.categories.overlay %}
+
+      <div class='layer-details {{dataset.url  | replace:'/','}}'>
+        <h1>Layer Details</h1>
+        <table>
+          <tr>
+            <td class='field-name'>Title: </td>
+            <td class='field-val'>{{dataset.title}}</td>
+          </tr>
+          <tr>
+            <td class='field-name'>Description: </td>
+            <td class='field-val'>{{dataset.description}}</td>
+          </tr>
+          <tr>
+            <td class='field-name'>Source: </td>
+            <td class='field-val'>{{dataset.source}}</td>
+          </tr>
+          <tr>
+            <td class='field-name'>License: </td>
+            <td class='field-val'>{{dataset.license}}</td>
+          </tr>
+          <tr>
+            <td class='field-name'>Updated: </td>
+            <td class='field-val'>{{dataset.updated}}</td>
+          </tr>
+        </table>
+       {% if dataset.legendURL != null %}
+
+          <h1>Legend</h1>
+          <img src={{dataset.legendURL}}></img> 
+
+        {% endif %}  
+        {% if dataset.downloads != null %}
+          <h1>Downloads</h1>
+          {% for download in dataset.downloads %}
+
+            <a href='{{download.link}}' class='download download-{{download.type | downcase}} clearfix'>
+              <span class='icon {{download.type | downcase}}'>{{download.type | capitalize}}</span>
+              <span class='button'>{{download.type | capitalize}}</span>
+            </a>
+
+          {% endfor %}
+        {% endif %}  
+ 
+      </div>
+
+    {% endfor %}
+
+    <a href='#' class='icon details-close'>Close</a>
+  </div>
+</div>
+
+
